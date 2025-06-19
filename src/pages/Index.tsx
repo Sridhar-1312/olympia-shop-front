@@ -3,6 +3,12 @@ import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import CategoryShowcase from "@/components/CategoryShowcase";
 import FeaturedProducts from "@/components/FeaturedProducts";
+import MallHighlights from "@/components/MallHighlights";
+import BrandsDirectory from "@/components/BrandsDirectory";
+import EventsOffers from "@/components/EventsOffers";
+import FoodCourt from "@/components/FoodCourt";
+import Facilities from "@/components/Facilities";
+import LocationSection from "@/components/LocationSection";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 
@@ -14,8 +20,14 @@ const Index = () => {
         <div className="relative z-10">
           <Navbar />
           <Hero />
+          <MallHighlights />
           <CategoryShowcase />
+          <BrandsDirectory />
           <FeaturedProducts />
+          <EventsOffers />
+          <FoodCourt />
+          <Facilities />
+          <LocationSection />
           <Newsletter />
           <Footer />
         </div>
