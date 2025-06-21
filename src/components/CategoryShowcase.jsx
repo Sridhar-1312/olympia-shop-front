@@ -51,14 +51,14 @@ const CategoryShowcase = () => {
           {categories.map((category) => (
             <div 
               key={category.id}
-              className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-md border border-white/10 hover:border-orange-500/30 transition-all duration-500 hover:scale-105"
+              className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-md border border-white/10 "
             >
               {/* Background Image */}
               <div className="relative h-64 overflow-hidden">
                 <img 
                   src={category.image} 
                   alt={category.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-700 "
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent"></div>
               </div>
@@ -68,21 +68,21 @@ const CategoryShowcase = () => {
                 <div className="mb-3">
                   <span className="text-orange-400 text-sm font-medium">{category.itemCount}</span>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-orange-300 transition-colors">
+                <h3 className="text-2xl font-bold text-white mb-2 ">
                   {category.name}
                 </h3>
                 <p className="text-gray-300 mb-4">{category.description}</p>
                 <Button 
                   variant="outline"
                   size="sm"
-                  className="border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white transition-all duration-300"
+                  className="border-orange-400 text-orange-400 hover:scale-105 transition-transform duration-300 px-4 py-2 rounded-full font-semibold hover:bg-orange-400 hover:text-white"
                 >
                   Explore
                 </Button>
               </div>
 
               {/* Hover Effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-red-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              {/* <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-red-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div> */}
             </div>
           ))}
         </div>
