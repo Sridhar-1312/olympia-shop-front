@@ -17,11 +17,11 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { name: "Home", href: "#" },
-    { name: "Categories", href: "#categories" },
-    { name: "Products", href: "#products" },
-    { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" }
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Categories", href: "/categories" },
+    { name: "Products", href: "/products" },
+    { name: "Contact", href: "/contact" }
   ];
 
   return (
@@ -33,20 +33,19 @@ const Navbar = () => {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-4">
+          <a href="/" className="flex items-center space-x-4 focus:outline-none group">
             <div className="relative">
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 hover:rotate-12">
+              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 group-hover:rotate-12">
                 <Store className="w-8 h-8 text-white" />
               </div>
             </div>
-            <div className="hidden sm:block">
+            <div>
               <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">
                 OLYMPIA
               </h1>
               <p className="text-xs text-gray-300 -mt-1">SHOPPING</p>
             </div>
-          </div>
-
+          </a>
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
             {navItems.map((item) => (

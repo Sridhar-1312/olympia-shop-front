@@ -6,12 +6,71 @@ import { Star, ShoppingCart } from "lucide-react";
 const FeaturedProducts = () => {
   const products = [
     {
-      id: 1,
       name: "Premium Wireless Headphones",
       price: 299,
       originalPrice: 399,
       rating: 4.8,
       image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop",
+      badge: "Best Seller",
+      category: "Electronics"
+        },
+        {
+      id: 7,
+      name: "Eco-Friendly Water Bottle",
+      price: 29,
+      originalPrice: 39,
+      rating: 4.4,
+      image: "https://images.unsplash.com/photo-1676854121021-66b6a8ddb08d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fGVjbyUyMGZyaWVuZGx5JTIwd2F0ZXIlMjBib3R0bGVzfGVufDB8fDB8fHww",
+      badge: "Eco",
+      category: "Accessories"
+        },
+        {
+      id: 8,
+      name: "Bluetooth Speaker",
+      price: 79,
+      originalPrice: 99,
+      rating: 4.6,
+      image: "https://images.unsplash.com/photo-1608488458196-61cd3a720de8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fGJsdWV0b290aCUyMHNwZWFrZXJ8ZW58MHx8MHx8fDA%3D",
+      badge: "Hot",
+      category: "Electronics"
+        },
+        {
+      id: 9,
+      name: "Classic Aviator Sunglasses",
+      price: 59,
+      originalPrice: 79,
+      rating: 4.5,
+      image: "https://images.unsplash.com/photo-1612479121907-15bca39a5388?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGF2aWF0b3IlMjBzdW5nbGFzc2VzfGVufDB8fDB8fHww",
+      badge: "Trending",
+      category: "Fashion"
+        },
+        {
+      id: 10,
+      name: "Wireless Charging Pad",
+      price: 49,
+      originalPrice: 69,
+      rating: 4.3,
+      image: "https://images.unsplash.com/photo-1603674554159-b62f6febbce5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHdpcmVsZXNzJTIwY2hhcmdpbmclMjBwYWR8ZW58MHx8MHx8fDA%3D",
+      badge: "New",
+      category: "Electronics"
+        },
+        {
+      id: 11,
+      name: "Ceramic Coffee Mug Set",
+      price: 39,
+      originalPrice: 59,
+      rating: 4.7,
+      image:"https://images.unsplash.com/photo-1651936020103-1156d5390b25?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNlcmFtaWMlMjBjb2ZmZWUlMjBtdWclMjBzZXR8ZW58MHx8MHx8fDA%3D",
+      badge: "Best Seller",
+      category: "Home"
+        },
+        {
+      id:1,
+      name: "Featured Smart TV",
+      price: 299,
+      originalPrice: 399,
+      rating: 4.8,
+      image: "https://images.unsplash.com/photo-1678483789481-d3ceb0641629?w=294&dpr=2&h=294&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXRodW1ibmFpbHx8RHR2RkV6cXFZUUl8fGVufDB8fHx8fA%3D%3D",
       badge: "Best Seller",
       category: "Electronics"
     },
@@ -61,7 +120,7 @@ const FeaturedProducts = () => {
       price: 129,
       originalPrice: 169,
       rating: 4.5,
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1607983977515-7b8bc5d91e3e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjJ8fG1vZGVybiUyMHRhYmJsZSUyMGxhbXB8ZW58MHx8MHx8fDA%3D",
       badge: "New",
       category: "Home"
     }
@@ -72,7 +131,7 @@ const FeaturedProducts = () => {
       <div className="container mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-orange-300 bg-clip-text text-transparent">
+          <h2 className="  custom-heading text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-orange-300 bg-clip-text text-transparent">
             Featured Products
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">

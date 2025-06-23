@@ -11,10 +11,10 @@ const FoodCourt = () => {
       cuisine: "South Indian",
       rating: 4.8,
       priceRange: "₹200-400",
-      image: "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=400&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1708146464361-5c5ce4f9abb6?w=294&dpr=2&h=294&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXRodW1ibmFpbHx8LTVxX2dhU29rTWt8fGVufDB8fHx8fA%3D%3D",
       specialty: "Authentic Tamil Cuisine",
       time: "20-30 mins",
-      level: "Level 4"
+      level: "Level 1"
     },
     {
       id: 2,
@@ -25,7 +25,7 @@ const FoodCourt = () => {
       image: "https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=400&h=300&fit=crop",
       specialty: "Burgers & Fries",
       time: "10-15 mins",
-      level: "Level 4"
+      level: "Level 2"
     },
     {
       id: 3,
@@ -33,10 +33,10 @@ const FoodCourt = () => {
       cuisine: "Chinese",
       rating: 4.7,
       priceRange: "₹400-800",
-      image: "https://images.unsplash.com/photo-1563379091339-03246963d059?w=400&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1701773169812-750e47f0ab19?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODh8fG1haW4lMjBsYW5kJTIwY2hpbmElMjByZXN0dWFyYW50JTIwZGlzaHxlbnwwfHwwfHx8MA%3D%3D",
       specialty: "Authentic Chinese",
       time: "25-35 mins",
-      level: "Level 5"
+      level: "Level 3"
     },
     {
       id: 4,
@@ -55,10 +55,10 @@ const FoodCourt = () => {
       cuisine: "Beverages",
       rating: 4.6,
       priceRange: "₹50-200",
-      image: "https://images.unsplash.com/photo-1571091655789-405eb7a3a3a8?w=400&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=294&dpr=2&h=294&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXRodW1ibmFpbHx8MjQyODk1N3x8ZW58MHx8fHx8",
       specialty: "Premium Tea & Snacks",
       time: "5-10 mins",
-      level: "Level 4"
+      level: "Level 5"
     },
     {
       id: 6,
@@ -69,7 +69,7 @@ const FoodCourt = () => {
       image: "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=400&h=300&fit=crop",
       specialty: "Live Grill Experience",
       time: "45-60 mins",
-      level: "Level 5"
+      level: "Level 6"
     }
   ];
 
@@ -105,7 +105,7 @@ const FoodCourt = () => {
             <span className="text-orange-300 font-medium">Culinary Paradise</span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-orange-300 bg-clip-text text-transparent">
+          <h2 className="text-4xl custom-heading md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-orange-300 bg-clip-text text-transparent">
             Food Court & Restaurants
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">

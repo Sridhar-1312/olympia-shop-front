@@ -8,19 +8,46 @@ const BrandsDirectory = () => {
     {
       category: "Fashion & Lifestyle",
       brands: [
-        { name: "Zara", level: "Level 2", type: "International", rating: 4.8, image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=300&h=200&fit=crop" },
-        { name: "H&M", level: "Level 1", type: "International", rating: 4.7, image: "https://images.unsplash.com/photo-1445205170230-053b83016050?w=300&h=200&fit=crop" },
-        { name: "Fabindia", level: "Level 3", type: "Indian", rating: 4.6, image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=300&h=200&fit=crop" },
-        { name: "Allen Solly", level: "Level 2", type: "Indian", rating: 4.5, image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop" }
+        { name: "Zara", level: "Level 2", type: "International", rating: 4.8, image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=300&h=200&fit=crop&auto=format&ixlib=rb-4.0.3" },
+        { name: "H&M", level: "Level 1", type: "International", rating: 4.7, image: "https://images.unsplash.com/photo-1445205170230-053b83016050?w=300&h=200&fit=crop&auto=format&ixlib=rb-4.0.3" },
+        { name: "Fabindia", level: "Level 3", type: "Indian", rating: 4.6, image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=300&h=200&fit=crop&auto=format&ixlib=rb-4.0.3" },
+        { name: "Allen Solly", level: "Level 2", type: "Indian", rating: 4.5, image: "https://images.unsplash.com/photo-1613852348851-df1739db8201?w=294&dpr=2&h=294&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXRodW1ibmFpbHx8TWxEdnFMbkNOU1V8fGVufDB8fHx8fA%3D%3D" }
       ]
     },
     {
       category: "Electronics & Technology",
       brands: [
-        { name: "Apple Store", level: "Level 1", type: "International", rating: 4.9, image: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=300&h=200&fit=crop" },
-        { name: "Samsung", level: "Level 1", type: "International", rating: 4.8, image: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=300&h=200&fit=crop" },
-        { name: "Croma", level: "Level 2", type: "Indian", rating: 4.6, image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=300&h=200&fit=crop" },
-        { name: "Reliance Digital", level: "Level 3", type: "Indian", rating: 4.5, image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300&h=200&fit=crop" }
+        { name: "Apple Store", level: "Level 1", type: "International", rating: 4.9, image: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=300&h=200&fit=crop&auto=format&ixlib=rb-4.0.3" },
+        { name: "Samsung", level: "Level 1", type: "International", rating: 4.8, image: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=300&h=200&fit=crop&auto=format&ixlib=rb-4.0.3" },
+        { name: "Croma", level: "Level 2", type: "Indian", rating: 4.6, image: "https://images.unsplash.com/photo-1523585298601-d46ae038d7d3?w=294&dpr=2&h=294&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXRodW1ibmFpbHx8OTM2NTgzfHxlbnwwfHx8fHw%3D" },
+        { name: "Reliance Digital", level: "Level 3", type: "Indian", rating: 4.5, image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300&h=200&fit=crop&auto=format&ixlib=rb-4.0.3" }
+      ]
+    },
+    {
+      category: "Food & Beverages",
+      brands: [
+        { name: "Starbucks", level: "Level 1", type: "International", rating: 4.7, image: "https://images.unsplash.com/photo-1720692739658-ee952b1aebb1?w=294&dpr=2&h=294&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXRodW1ibmFpbHx8MjI5MDIzOXx8ZW58MHx8fHx8" },
+        { name: "KFC", level: "Level 2", type: "International", rating: 4.6, image: "https://images.unsplash.com/photo-1513639776629-7b61b0ac49cb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8a2ZjfGVufDB8fDB8fHww" },
+        { name: "Saravana Bhavan", level: "Level 3", type: "Indian", rating: 4.5, image: "https://images.unsplash.com/photo-1743517894265-c86ab035adef?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHNhcmF2YW4lMjBiYWhhdmFuJTIwaG90ZWwlMjBkaXNofGVufDB8fDB8fHww" },
+        { name: "Barbeque Nation", level: "Level 2", type: "Indian", rating: 4.4, image: "https://images.unsplash.com/photo-1736605647729-725e51ca08b4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTg0fHxiYXJiZXF1ZSUyMG5hdGlvbnxlbnwwfHwwfHx8MA%3D%3D" }
+      ]
+    },
+    {
+      category: "Health & Beauty",
+      brands: [
+        { name: "Sephora", level: "Level 1", type: "International", rating: 4.8, image: "https://images.unsplash.com/photo-1575330933415-cea1e7ce53eb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8c2VwaG9yYXxlbnwwfHwwfHx8MA%3D%3D" },
+        { name: "Forest Essentials", level: "Level 2", type: "Indian", rating: 4.7, image: "https://images.unsplash.com/photo-1696872691665-0619997cd5e5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Zm9yZXN0JTIwZXNzc25ldGlhbHMlMjBjYXBzdWxlc3xlbnwwfHwwfHx8MA%3D%3D" },
+        { name: "Nykaa", level: "Level 3", type: "Indian", rating: 4.6, image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=300&h=200&fit=crop&auto=format&ixlib=rb-4.0.3" },
+        { name: "The Body Shop", level: "Level 2", type: "International", rating: 4.5, image: "https://images.unsplash.com/photo-1444312645910-ffa973656eba?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHdlbGxuZXNzfGVufDB8fDB8fHww" }
+      ]
+    },
+    {
+      category: "Home & Living",
+      brands: [
+        { name: "Home Centre", level: "Level 2", type: "Indian", rating: 4.6, image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=300&h=200&fit=crop&auto=format&ixlib=rb-4.0.3" },
+        { name: "IKEA", level: "Level 1", type: "International", rating: 4.8, image: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?w=300&h=200&fit=crop&auto=format&ixlib=rb-4.0.3" },
+        { name: "Urban Ladder", level: "Level 3", type: "Indian", rating: 4.5, image: "https://images.unsplash.com/photo-1460518451285-97b6aa326961?w=300&h=200&fit=crop&auto=format&ixlib=rb-4.0.3" },
+        { name: "HomeTown", level: "Level 2", type: "Indian", rating: 4.4, image: "https://images.unsplash.com/photo-1645393941314-13598b38d1a1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHN3aXR6ZXJsYW5kJTIwaG9tZSUyMGJldHdlZW4lMjAlMjBtb251bnRhaW5uc3xlbnwwfHwwfHx8MA%3D%3D" }
       ]
     }
   ];
@@ -29,7 +56,7 @@ const BrandsDirectory = () => {
     <section className="py-20 px-6">
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-orange-300 bg-clip-text text-transparent">
+          <h2 className="text-4xl custom-heading md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-orange-300 bg-clip-text text-transparent">
             Premium Brands Directory
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">

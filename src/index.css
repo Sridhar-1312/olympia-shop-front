@@ -103,3 +103,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+.custom-heading{
+  line-height: 4rem !important;
+}

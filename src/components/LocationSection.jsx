@@ -56,63 +56,65 @@ const LocationSection = () => {
           <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-md rounded-3xl border border-white/10 p-8">
             <h3 className="text-2xl font-bold text-white mb-6">Our Location</h3>
             
-            {/* Map Placeholder */}
-            <div className="relative bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl h-64 mb-6 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-red-600/20"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="w-16 h-16 text-orange-400 mx-auto mb-4" />
-                  <p className="text-white font-semibold">Interactive Map</p>
-                  <p className="text-gray-300 text-sm">Click to view full map</p>
-                </div>
-              </div>
-            </div>
+            /* Interactive Live Map */
+                  <div className="relative bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl h-64 mb-6 overflow-hidden">
+                    <iframe
+                    title="Olympia Tech Park Location"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.073261809401!2d80.2056973153467!3d13.01073231701947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5267e0e7e7e7e7%3A0x7e7e7e7e7e7e7e7e!2sOlympia%20Tech%20Park!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="absolute inset-0 w-full h-full rounded-2xl"
+                    ></iframe>
+                  </div>
 
-            <div className="space-y-4">
-              <div className="flex items-start space-x-3">
-                <MapPin className="w-5 h-5 text-orange-400 mt-1" />
-                <div>
-                  <p className="text-white font-medium">Address</p>
-                  <p className="text-gray-300 text-sm">
-                    123 OMR Main Road, Thoraipakkam,<br />
-                    Chennai, Tamil Nadu 600097
-                  </p>
-                </div>
-              </div>
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-3">
+                    <MapPin className="w-5 h-5 text-orange-400 mt-1" />
+                    <div>
+                      <p className="text-white font-medium">Address</p>
+                      <p className="text-gray-300 text-sm">
+                      Olympia Tech Park,<br />
+                      SIDCO Industrial Estate, Guindy,<br />
+                      Chennai, Tamil Nadu 600032
+                      </p>
+                    </div>
+                    </div>
 
-              <div className="flex items-start space-x-3">
-                <Clock className="w-5 h-5 text-orange-400 mt-1" />
-                <div>
-                  <p className="text-white font-medium">Mall Timings</p>
-                  <p className="text-gray-300 text-sm">
-                    Daily: 10:00 AM - 10:00 PM<br />
-                    (Extended hours during festivals)
-                  </p>
-                </div>
-              </div>
+                    <div className="flex items-start space-x-3">
+                    <Clock className="w-5 h-5 text-orange-400 mt-1" />
+                    <div>
+                      <p className="text-white font-medium">Office Timings</p>
+                      <p className="text-gray-300 text-sm">
+                      Mon - Fri: 8:00 AM - 8:00 PM<br />
+                      Sat: 9:00 AM - 4:00 PM
+                      </p>
+                    </div>
+                    </div>
 
-              <div className="flex items-start space-x-3">
-                <Phone className="w-5 h-5 text-orange-400 mt-1" />
-                <div>
-                  <p className="text-white font-medium">Contact</p>
-                  <p className="text-gray-300 text-sm">
-                    +91 44 1234 5678<br />
-                    info@olympiamall.com
-                  </p>
-                </div>
-              </div>
-            </div>
+                    <div className="flex items-start space-x-3">
+                    <Phone className="w-5 h-5 text-orange-400 mt-1" />
+                    <div>
+                      <p className="text-white font-medium">Contact</p>
+                      <p className="text-gray-300 text-sm">
+                      +91 44 1234 5678<br />
+                      info@olympiatechpark.com
+                      </p>
+                    </div>
+                    </div>
+                  </div>
 
-            <Button 
-              className="w-full mt-6 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 transition-all duration-300"
-            >
-              Get Directions
-            </Button>
-          </div>
-
-          {/* Transport & Nearby */}
-          <div className="space-y-8">
-            {/* How to Reach */}
+                  <Button 
+                    className="w-full mt-6 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 transition-all duration-300"
+                  >
+                    Get Directions
+                  </Button>
+                  </div>
+                  <div className="space-y-8">
+                  {/* How to Reach */}
             <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-md rounded-3xl border border-white/10 p-8">
               <h3 className="text-2xl font-bold text-white mb-6">How to Reach</h3>
               

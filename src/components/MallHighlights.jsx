@@ -1,4 +1,3 @@
-
 import { Star, MapPin, Clock, Car, Wifi, ShoppingCart } from "lucide-react";
 
 const MallHighlights = () => {
@@ -38,6 +37,42 @@ const MallHighlights = () => {
       number: "50+",
       label: "Food Options",
       description: "Restaurants & cafes"
+    },
+    {
+      icon: Star,
+      number: "100+",
+      label: "Events Hosted",
+      description: "Exciting events year-round"
+    },
+    {
+      icon: Wifi,
+      number: "24x7",
+      label: "Security",
+      description: "Round-the-clock surveillance"
+    },
+    {
+      icon: Car,
+      number: "Eco",
+      label: "Green Initiatives",
+      description: "Sustainable mall practices"
+    },
+    {
+      icon: Clock,
+      number: "365",
+      label: "Open Days",
+      description: "Open every day of the year"
+    },
+    {
+      icon: ShoppingCart,
+      number: "10+",
+      label: "Anchor Stores",
+      description: "Major retail anchors for all needs"
+    },
+    {
+      icon: MapPin,
+      number: "Central",
+      label: "Prime Location",
+      description: "Located in the heart of the city"
     }
   ];
 
@@ -54,7 +89,7 @@ const MallHighlights = () => {
             <span className="text-orange-300 font-medium">Chennai's Premier Shopping Destination</span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-orange-300 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl custom-heading font-bold mb-6 bg-gradient-to-r from-white to-orange-300 bg-clip-text text-transparent">
             Olympia Mall Chennai
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -63,33 +98,55 @@ const MallHighlights = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-8">
-          {highlights.map((highlight, index) => (
-            <div 
-              key={index}
-              className="group bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-md rounded-3xl border border-white/10 hover:border-orange-500/30 p-8 text-center transition-all duration-500 hover:scale-105 hover:bg-white/5"
-            >
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <highlight.icon className="w-8 h-8 text-white" />
-              </div>
-              
-              <div className="mb-2">
-                <span className="text-3xl font-bold bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">
-                  {highlight.number}
-                </span>
-              </div>
-              
-              <h3 className="text-white font-semibold text-lg mb-2 group-hover:text-orange-300 transition-colors">
-                {highlight.label}
-              </h3>
-              
-              <p className="text-gray-400 text-sm leading-relaxed">
-                {highlight.description}
-              </p>
+        <div className="relative">
+          <div className="flex overflow-x-auto pb-6 -mx-2 px-2 scrollbar-hide">
+            <div className="flex space-x-8">
+              {highlights.map((highlight, index) => (
+                <div 
+                  key={index}
+                  className="flex-shrink-0 w-72 group bg-gradient-to-br from-slate-900/50 to-slate-900/50 backdrop-blur-md rounded-3xl border border-white/10 hover:border-orange-500/30 p-8 text-center transition-all duration-500 hover:scale-[1.02] hover:bg-slate/5"
+                >
+                  <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <highlight.icon className="w-8 h-8 text-white" />
+                  </div>
+                  
+                  <div className="mb-2">
+                    <span className="text-3xl font-bold bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">
+                      {highlight.number}
+                    </span>
+                  </div>
+                  
+                  <h3 className="text-white font-semibold text-lg mb-2 group-hover:text-orange-300 transition-colors">
+                    {highlight.label}
+                  </h3>
+                  
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {highlight.description}
+                  </p>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
+
+      {/* Custom scrollbar styling (optional) */}
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          height: 6px;
+        }
+        .scrollbar-hide::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 10px;
+        }
+        .scrollbar-hide::-webkit-scrollbar-thumb {
+          background: rgba(255, 165, 0, 0.4);
+          border-radius: 10px;
+        }
+        .scrollbar-hide::-webkit-scrollbar-thumb:hover {
+          background: rgba(255, 165, 0, 0.6);
+        }
+      `}</style>
     </section>
   );
 };

@@ -18,7 +18,7 @@ const Newsletter = () => {
             </div>
 
             {/* Content */}
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-orange-300 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl custom-heading font-bold mb-6 bg-gradient-to-r from-white to-orange-300 bg-clip-text text-transparent">
               Stay in the Loop
             </h2>
             
