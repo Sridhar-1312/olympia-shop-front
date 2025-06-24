@@ -1,8 +1,11 @@
-
+import { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { MapPin, Clock, Phone, Car, Train, Bus } from "lucide-react";
+import { MapPin, Clock, Phone, Car, Train, Bus, ArrowRight, LocateFixed, Loader2 } from "lucide-react";
 
 const LocationSection = () => {
+  const [isLocating, setIsLocating] = useState(false);
+  const [locationError, setLocationError] = useState(null);
+  
   const transportOptions = [
     {
       icon: Car,
@@ -33,6 +36,65 @@ const LocationSection = () => {
     "Central Railway Station - 18 km"
   ];
 
+  // Function to open Google Maps directions
+  const openGoogleMaps = (userCoords = null) => {
+    // Coordinates for Olympia Mall Chennai
+    const mallLatitude = 12.9716;
+    const mallLongitude = 80.0497;
+    
+    // Create Google Maps URL
+    let mapsUrl;
+    
+    if (userCoords) {
+      // Directions from user's location to mall
+      mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userCoords.latitude},${userCoords.longitude}&destination=${mallLatitude},${mallLongitude}&travelmode=driving`;
+    } else {
+      // Just show mall location
+      mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mallLatitude},${mallLongitude}`;
+    }
+    
+    // Open in a new tab
+    window.open(mapsUrl, '_blank');
+  };
+
+  // Get user's current location
+  const getCurrentLocation = () => {
+    setIsLocating(true);
+    setLocationError(null);
+    
+    if (!navigator.geolocation) {
+      setLocationError("Geolocation is not supported by your browser");
+      setIsLocating(false);
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setIsLocating(false);
+        openGoogleMaps({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        });
+      },
+      (error) => {
+        setIsLocating(false);
+        switch(error.code) {
+          case error.PERMISSION_DENIED:
+            setLocationError("Location access denied. Please enable location services.");
+            break;
+          case error.POSITION_UNAVAILABLE:
+            setLocationError("Location information is unavailable.");
+            break;
+          case error.TIMEOUT:
+            setLocationError("The request to get location timed out.");
+            break;
+          default:
+            setLocationError("An unknown error occurred.");
+        }
+      }
+    );
+  };
+
   return (
     <section className="py-20 px-6 bg-gradient-to-br from-slate-900/50 to-slate-800/50">
       <div className="container mx-auto">
@@ -56,65 +118,90 @@ const LocationSection = () => {
           <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-md rounded-3xl border border-white/10 p-8">
             <h3 className="text-2xl font-bold text-white mb-6">Our Location</h3>
             
-            /* Interactive Live Map */
-                  <div className="relative bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl h-64 mb-6 overflow-hidden">
-                    <iframe
-                    title="Olympia Tech Park Location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.073261809401!2d80.2056973153467!3d13.01073231701947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5267e0e7e7e7e7%3A0x7e7e7e7e7e7e7e7e!2sOlympia%20Tech%20Park!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen=""
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    className="absolute inset-0 w-full h-full rounded-2xl"
-                    ></iframe>
-                  </div>
+            {/* Interactive Live Map */}
+            <div className="relative bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl h-64 mb-6 overflow-hidden">
+              <iframe
+                title="Olympia Mall Location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.262763123068!2d80.24138751534814!3d13.041772217308157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5267e0e7e7e7e7%3A0x7e7e7e7e7e7e7e7e!2sOlympia%20Mall!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="absolute inset-0 w-full h-full rounded-2xl"
+              ></iframe>
+            </div>
 
-                  <div className="space-y-4">
-                    <div className="flex items-start space-x-3">
-                    <MapPin className="w-5 h-5 text-orange-400 mt-1" />
-                    <div>
-                      <p className="text-white font-medium">Address</p>
-                      <p className="text-gray-300 text-sm">
-                      Olympia Tech Park,<br />
-                      SIDCO Industrial Estate, Guindy,<br />
-                      Chennai, Tamil Nadu 600032
-                      </p>
-                    </div>
-                    </div>
+            <div className="space-y-4">
+              <div className="flex items-start space-x-3">
+                <MapPin className="w-5 h-5 text-orange-400 mt-1" />
+                <div>
+                  <p className="text-white font-medium">Address</p>
+                  <p className="text-gray-300 text-sm">
+                    Olympia Mall,<br />
+                    Rajiv Gandhi Salai (OMR),<br />
+                    Sholinganallur, Chennai, Tamil Nadu 600119
+                  </p>
+                </div>
+              </div>
 
-                    <div className="flex items-start space-x-3">
-                    <Clock className="w-5 h-5 text-orange-400 mt-1" />
-                    <div>
-                      <p className="text-white font-medium">Office Timings</p>
-                      <p className="text-gray-300 text-sm">
-                      Mon - Fri: 8:00 AM - 8:00 PM<br />
-                      Sat: 9:00 AM - 4:00 PM
-                      </p>
-                    </div>
-                    </div>
+              <div className="flex items-start space-x-3">
+                <Clock className="w-5 h-5 text-orange-400 mt-1" />
+                <div>
+                  <p className="text-white font-medium">Opening Hours</p>
+                  <p className="text-gray-300 text-sm">
+                    Mon - Sun: 10:00 AM - 10:00 PM<br />
+                    Holidays: 10:00 AM - 11:00 PM
+                  </p>
+                </div>
+              </div>
 
-                    <div className="flex items-start space-x-3">
-                    <Phone className="w-5 h-5 text-orange-400 mt-1" />
-                    <div>
-                      <p className="text-white font-medium">Contact</p>
-                      <p className="text-gray-300 text-sm">
-                      +91 44 1234 5678<br />
-                      info@olympiatechpark.com
-                      </p>
-                    </div>
-                    </div>
-                  </div>
+              <div className="flex items-start space-x-3">
+                <Phone className="w-5 h-5 text-orange-400 mt-1" />
+                <div>
+                  <p className="text-white font-medium">Contact</p>
+                  <p className="text-gray-300 text-sm">
+                    +91 44 5678 1234<br />
+                    info@olympiamallchennai.com
+                  </p>
+                </div>
+              </div>
+            </div>
 
-                  <Button 
-                    className="w-full mt-6 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 transition-all duration-300"
-                  >
-                    Get Directions
-                  </Button>
-                  </div>
-                  <div className="space-y-8">
-                  {/* How to Reach */}
+            <div className="mt-6 space-y-3">
+              <Button 
+                className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 transition-all duration-300 flex items-center justify-center pt-3 pb-3 rounded-full text-semibold text-white"
+                onClick={getCurrentLocation}
+              >
+                {isLocating ? (
+                  <>
+                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                    Detecting Location...
+                  </>
+                ) : (
+                  <>
+                    <LocateFixed className="w-5 h-5 mr-2" />
+                    Get Directions from My Location
+                  </>
+                )}
+              </Button>
+              
+          
+            </div>
+            
+            {locationError && (
+              <div className="mt-4 text-red-400 text-sm p-3 bg-red-900/20 rounded-lg flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
+                {locationError}
+              </div>
+            )}
+          </div>
+          
+          <div className="space-y-8">
+            {/* How to Reach */}
             <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-md rounded-3xl border border-white/10 p-8">
               <h3 className="text-2xl font-bold text-white mb-6">How to Reach</h3>
               
@@ -165,6 +252,7 @@ const LocationSection = () => {
             <Button 
               size="lg"
               className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300"
+              onClick={() => window.open('tel:+914456781234')}
             >
               <Phone className="w-5 h-5 mr-2" />
               Call Now
@@ -174,6 +262,10 @@ const LocationSection = () => {
               size="lg"
               variant="outline"
               className="border-2 border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white px-8 py-4 text-lg font-semibold rounded-full backdrop-blur-md transition-all duration-300"
+              onClick={() => {
+                navigator.clipboard.writeText("Olympia Mall, Rajiv Gandhi Salai (OMR), Sholinganallur, Chennai, Tamil Nadu 600119");
+                alert("Location copied to clipboard!");
+              }}
             >
               <MapPin className="w-5 h-5 mr-2" />
               Share Location

@@ -130,69 +130,70 @@ const FoodCourt = () => {
           ))}
         </div>
 
-        {/* Restaurant Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {restaurants.map((restaurant) => (
-            <div 
-              key={restaurant.id}
-              className="group bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-md rounded-3xl border border-white/10 hover:border-orange-500/30 overflow-hidden transition-all duration-500 hover:scale-105"
-            >
-              <div className="relative overflow-hidden">
-                <img 
-                  src={restaurant.image} 
-                  alt={restaurant.name}
-                  className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent"></div>
-                
-                <Badge className="absolute top-4 left-4 bg-green-500 text-white">
-                  {restaurant.cuisine}
-                </Badge>
+        /* Restaurant Grid */
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {restaurants.map((restaurant) => (
+              <div 
+                key={restaurant.id}
+                className="group bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-md rounded-3xl border border-white/10 hover:border-orange-500/30 overflow-hidden transition-all duration-500 hover:scale-105"
+              >
+                <div className="relative overflow-hidden">
+            <img 
+              src={restaurant.image} 
+              alt={restaurant.name}
+              className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent"></div>
+            
+            <Badge className="absolute top-4 left-4 bg-green-500 text-white">
+              {restaurant.cuisine}
+            </Badge>
 
-                <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md text-white px-2 py-1 rounded-full text-sm">
-                  {restaurant.level}
-                </div>
-              </div>
-
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-xl font-bold text-white group-hover:text-orange-300 transition-colors">
-                    {restaurant.name}
-                  </h3>
-                  <div className="flex items-center space-x-1">
-                    <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    <span className="text-gray-300 text-sm">{restaurant.rating}</span>
-                  </div>
+            <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md text-white px-2 py-1 rounded-full text-sm">
+              {restaurant.level}
+            </div>
                 </div>
 
-                <p className="text-orange-400 text-sm mb-2">{restaurant.specialty}</p>
-                
-                <div className="flex items-center justify-between text-gray-400 text-sm mb-4">
-                  <span>{restaurant.priceRange}</span>
-                  <div className="flex items-center">
-                    <Clock className="w-4 h-4 mr-1" />
-                    <span>{restaurant.time}</span>
-                  </div>
-                </div>
-
-                <Button 
-                  className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 transition-all duration-300"
-                >
-                  Order Now
-                </Button>
+                <div className="p-6">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-xl font-bold text-white group-hover:text-orange-300 transition-colors">
+                {restaurant.name}
+              </h3>
+              <div className="flex items-center space-x-1">
+                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                <span className="text-gray-300 text-sm">{restaurant.rating}</span>
               </div>
             </div>
-          ))}
-        </div>
 
-        <div className="text-center mt-12">
-          <Button 
-            size="lg"
-            variant="outline"
-            className="border-2 border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white px-8 py-4 text-lg font-semibold rounded-full backdrop-blur-md transition-all duration-300"
-          >
-            Explore All Restaurants
-          </Button>
+            <p className="text-orange-400 text-sm mb-2">{restaurant.specialty}</p>
+            
+            <div className="flex items-center justify-between text-gray-400 text-sm mb-4">
+              <span>{restaurant.priceRange}</span>
+              <div className="flex items-center">
+                <Clock className="w-4 h-4 mr-1" />
+                <span>{restaurant.time}</span>
+              </div>
+            </div>
+            
+            <Button 
+              className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 transition-all duration-300"
+              onClick={() => window.open("https://www.swiggy.com/", "_blank")}
+                 >
+              Order Now
+            </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            {/* <Button 
+              size="lg"
+              variant="outline"
+              className="border-2 border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white px-8 py-4 text-lg font-semibold rounded-full backdrop-blur-md transition-all duration-300"
+            >
+              Explore All Restaurants
+            </Button> */}
         </div>
       </div>
     </section>

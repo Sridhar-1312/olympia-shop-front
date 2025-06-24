@@ -1,12 +1,17 @@
-
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { ShoppingCart, Search, Menu, X, Store } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [cartCount] = useState(3);
+  const [cartCount, setCartCount ] = useState(0);
+  
+  useEffect(() => {
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || 0;
+    setCartCount(cartItems.length)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,19 +26,24 @@ const Navbar = () => {
     { name: "About", href: "/about" },
     { name: "Categories", href: "/categories" },
     { name: "Products", href: "/products" },
-    { name: "Contact", href: "/contact" }
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      isScrolled 
-        ? "bg-slate-900/95 backdrop-blur-lg shadow-2xl py-3 mx-2 rounded-2xl mt-2" 
-        : "bg-slate-900/85 backdrop-blur-md shadow-xl py-4 mx-4 rounded-3xl mt-4"
-    }`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled
+          ? "bg-slate-900/95 backdrop-blur-lg shadow-2xl py-3 mx-2 rounded-2xl mt-2"
+          : "bg-slate-900/85 backdrop-blur-md shadow-xl py-4 mx-4 rounded-3xl mt-4"
+      }`}
+    >
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="/" className="flex items-center space-x-4 focus:outline-none group">
+          <a
+            href="/"
+            className="flex items-center space-x-4 focus:outline-none group"
+          >
             <div className="relative">
               <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 group-hover:rotate-12">
                 <Store className="w-8 h-8 text-white" />
@@ -62,26 +72,28 @@ const Navbar = () => {
 
           {/* Search and Cart */}
           <div className="flex items-center space-x-4">
-            <Button 
-              variant="ghost" 
+            <Button
+              variant="ghost"
               size="icon"
               className="text-white hover:text-orange-400 hover:bg-white/10 transition-all duration-300"
             >
               <Search className="w-5 h-5" />
             </Button>
-            
-            <Button 
-              variant="ghost" 
-              size="icon"
-              className="text-white hover:text-orange-400 hover:bg-white/10 relative transition-all duration-300"
-            >
-              <ShoppingCart className="w-5 h-5" />
-              {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-gradient-to-r from-orange-500 to-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
-                  {cartCount}
-                </span>
-              )}
-            </Button>
+
+            <Link to={"/cart"}>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-white hover:text-orange-400 hover:bg-white/10 relative transition-all duration-300"
+              >
+                <ShoppingCart className="w-5 h-5" />
+                {cartCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-gradient-to-r from-orange-500 to-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
+                    {cartCount}
+                  </span>
+                )}
+              </Button>
+            </Link>
 
             {/* Mobile Menu Button */}
             <Button
@@ -90,14 +102,18 @@ const Navbar = () => {
               className="lg:hidden text-white hover:text-orange-400 hover:bg-white/10"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </Button>
           </div>
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-6 pb-6 border-t border-white/10">
+          <div className="lg:hidden mt-6 pb-6 border-t border-white/10 ">
             <div className="flex flex-col space-y-4 pt-6">
               {navItems.map((item) => (
                 <a

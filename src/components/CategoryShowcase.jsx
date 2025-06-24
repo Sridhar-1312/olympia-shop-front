@@ -137,7 +137,7 @@ const CategoryShowcase = () => {
   };
 
   return (
-    <section ref={ref} id="categories" className="py-20 px-6">
+    <section ref={ref} id="categories" className="py-20 px-6 pt-0">
       <div className="container mx-auto">
         {/* Section Header */}
         <div  className="text-center mb-16 pt-2">
