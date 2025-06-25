@@ -138,7 +138,7 @@ const MallHighlights = () => {
     pagination: false,
     arrows: false,
     pauseOnHover: true,
-    speed: 1000, // duration in ms
+    speed: 1500, // duration in ms
     easing: 'cubic-bezier(0.65, 0, 0.35, 1)', // smooth and elegant
     breakpoints: {
       1024: { perPage: 3 },
