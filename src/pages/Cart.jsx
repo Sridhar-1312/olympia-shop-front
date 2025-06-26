@@ -1,24 +1,40 @@
+
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
+import AuthModal from "@/components/AuthModal";
 import { useEffect, useState } from "react";
-import { Minus, Plus } from 'lucide-react';
+import { LogOut, Minus, Plus, User } from 'lucide-react';
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 function Cart() {
-  // Show top view
+  const [cartItems, setCartItems] = useState([]);
+  const [user, setUser] = useState(null);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
-  }, []);
 
-  const [cartItems, setCartItems] = useState([]);
-
-  useEffect(() => {
     const items = JSON.parse(localStorage.getItem("cartItems")) || [];
     setCartItems(items);
+
+    // Check for authenticated user
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user || null);
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      setUser(session?.user || null);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   const handleRemoveCart = (productId) => {
@@ -45,19 +61,73 @@ function Cart() {
     setCartItems(updatedCartItems);
   };
 
-  // Calculate total amount
   const calculateTotal = () => {
     return cartItems.reduce((total, item) => {
       return total + (item.price * item.quantity);
     }, 0).toFixed(2);
   };
 
-  const handleBuyNow = () => {
-    // Here you would typically implement your checkout logic
-    alert(`Proceeding to checkout. Total amount: $${calculateTotal()}`);
-    // You might want to clear the cart after purchase
-    // localStorage.removeItem("cartItems");
-    // setCartItems([]);
+  const handleCheckout = async () => {
+    if (cartItems.length === 0) {
+      toast({
+        title: "Cart is empty",
+        description: "Please add items to your cart before checkout.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setLoading(true);
+    
+    try {
+      const { data, error } = await supabase.functions.invoke('create-payment', {
+        body: {
+          cartItems,
+          userEmail: user?.email,
+        },
+        headers: user ? {
+          Authorization: `Bearer ${(await supabase.auth.getSession()).data.session?.access_token}`,
+        } : {},
+      });
+
+      if (error) throw error;
+
+      if (data.url) {
+        // Open Stripe checkout in a new tab
+        window.open(data.url, '_blank');
+      }
+    } catch (error) {
+      console.error('Checkout error:', error);
+      toast({
+        title: "Checkout Error",
+        description: error.message || "Something went wrong during checkout. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleAuthSuccess = (user) => {
+    setUser(user);
+    setShowAuthModal(false);
+  };
+
+    const handleSignOut = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      toast({
+        title: "Sign Out Error",
+        description: error.message || "Failed to sign out",
+        variant: "destructive",
+      });
+    } else {
+      setUser(null);
+      toast({
+        title: "Signed Out",
+        description: "You have been successfully signed out",
+      });
+    }
   };
 
   return (
@@ -73,11 +143,46 @@ function Cart() {
                 Your Cart
               </h2>
               <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-                Review the items in your cart before proceeding to checkout. You
-                can remove items or continue shopping.
+                Review the items in your cart before proceeding to checkout.
               </p>
             </div>
+            
             <div className="max-w-4xl mx-auto">
+              {/* User Status */}
+              <div className="mb-8 bg-white/5 backdrop-blur-md rounded-2xl p-4 border border-white/10">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <User className="w-5 h-5 text-white" />
+                    <span className="text-white">
+                      {console.log(user)}
+                      {user ? `Signed in as ${user.user_metadata.full_name}` : "Continue as guest or sign in"}
+                    </span>
+                  </div>
+    {user ? (
+              // Sign Out Button for logged-in users
+              <Button
+                onClick={handleSignOut}
+                variant="outline"
+                size="sm"
+                className="border-white text-white bg-orange-600 flex items-center gap-2"
+              >
+                <LogOut size={16} />
+                Sign Out
+              </Button>
+            ) : (
+              // Sign In Button for guests
+              <Button
+                onClick={() => setShowAuthModal(true)}
+                variant="outline"
+                size="sm"
+                className="border-white text-white bg-orange-600 flex items-center gap-2"
+              >
+                Sign In
+              </Button>
+            )}
+                </div>
+              </div>
+
               {cartItems.length > 0 ? (
                 <>
                   <div className="flex flex-col gap-4 mx-auto mb-8">
@@ -131,18 +236,18 @@ function Cart() {
                     ))}
                   </div>
                   
-                  {/* Total and Buy Now section */}
                   <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 mt-8">
                     <div className="flex justify-between items-center">
                       <div className="text-white text-2xl font-bold">
                         Total: ${calculateTotal()}
                       </div>
                       <Button
-                        onClick={handleBuyNow}
+                        onClick={handleCheckout}
                         size="lg"
+                        disabled={loading}
                         className="bg-orange-500 hover:bg-orange-600 text-white transition-all duration-300 px-8 py-6 text-lg"
                       >
-                        Buy Now
+                        {loading ? "Processing..." : "Proceed to Checkout"}
                       </Button>
                     </div>
                   </div>
@@ -158,6 +263,12 @@ function Cart() {
           <Footer />
         </div>
       </div>
+
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        onSuccess={handleAuthSuccess}
+      />
     </div>
   );
 }
