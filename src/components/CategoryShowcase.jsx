@@ -175,13 +175,13 @@ const CategoryShowcase = () => {
                   {category.name}
                 </h3>
                 <p className="text-gray-300 mb-4">{category.description}</p>
-                <Button 
+                {/* <Button 
                   variant="outline"
                   size="sm"
                   className="border-orange-400 text-orange-400 hover:scale-105 transition-transform duration-300 px-4 py-2 rounded-full font-semibold hover:bg-orange-400 hover:text-white"
                 >
                   Explore
-                </Button>
+                </Button> */}
               </div>
 
               {/* Hover Effect */}

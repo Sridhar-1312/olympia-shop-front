@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, Star, Truck } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -37,6 +38,9 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-16">
+            <Link
+            to={"/products"}
+            >
             <Button 
               size="lg"
               className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
@@ -44,7 +48,11 @@ const Hero = () => {
               <ShoppingBag className="w-5 h-5 mr-2" />
               Shop Now
             </Button>
+            </Link>
             
+            <Link
+            to={"/categories"}
+            >
             <Button 
               variant="outline"
               size="lg"
@@ -52,6 +60,7 @@ const Hero = () => {
             >
               Explore Collections
             </Button>
+            </Link>
           </div>
 
           {/* Features */}
