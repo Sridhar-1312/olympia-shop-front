@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ShoppingCart, Search, Menu, X, Store } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useSearch } from "@/contexts/SearchContext";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [cartCount, setCartCount ] = useState(0);
+  const { openSearch } = useSearch();
   
   useEffect(() => {
     const cartItems = JSON.parse(localStorage.getItem("cartItems")) || 0;
@@ -75,6 +77,7 @@ const Navbar = () => {
             <Button
               variant="ghost"
               size="icon"
+              onClick={openSearch}
               className="text-white hover:text-orange-400 hover:bg-white/10 transition-all duration-300"
             >
               <Search className="w-5 h-5" />
