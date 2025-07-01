@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ShoppingCart, Search, Menu, X, Store } from "lucide-react";
@@ -7,13 +8,13 @@ import { useSearch } from "@/contexts/SearchContext";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [cartCount, setCartCount ] = useState(0);
+  const [cartCount, setCartCount] = useState(0);
   const { openSearch } = useSearch();
   
   useEffect(() => {
-    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || 0;
-    setCartCount(cartItems.length)
-  }, [])
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    setCartCount(cartItems.length);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +23,11 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleSearchClick = () => {
+    console.log('Search button clicked');
+    openSearch();
+  };
 
   const navItems = [
     { name: "Home", href: "/" },
@@ -42,8 +48,8 @@ const Navbar = () => {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a
-            href="/"
+          <Link
+            to="/"
             className="flex items-center space-x-4 focus:outline-none group"
           >
             <div className="relative">
@@ -57,18 +63,19 @@ const Navbar = () => {
               </h1>
               <p className="text-xs text-gray-300 -mt-1">SHOPPING</p>
             </div>
-          </a>
+          </Link>
+          
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
+                to={item.href}
                 className="text-white hover:text-orange-400 transition-colors duration-300 font-medium relative group"
               >
                 {item.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-400 to-yellow-400 group-hover:w-full transition-all duration-300"></span>
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -77,13 +84,13 @@ const Navbar = () => {
             <Button
               variant="ghost"
               size="icon"
-              onClick={openSearch}
+              onClick={handleSearchClick}
               className="text-white hover:text-orange-400 hover:bg-white/10 transition-all duration-300"
             >
               <Search className="w-5 h-5" />
             </Button>
 
-            <Link to={"/cart"}>
+            <Link to="/cart">
               <Button
                 variant="ghost"
                 size="icon"
@@ -116,17 +123,17 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-6 pb-6 border-t border-white/10 ">
+          <div className="lg:hidden mt-6 pb-6 border-t border-white/10">
             <div className="flex flex-col space-y-4 pt-6">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href}
                   className="text-white hover:text-orange-400 transition-colors duration-300 font-medium py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
