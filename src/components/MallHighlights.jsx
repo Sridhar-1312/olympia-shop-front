@@ -69,7 +69,7 @@ const MallHighlights = () => {
     {
       icon: Star,
       number: "100+",
-      label: "Events Hosted",
+      label: "Events Hoisted",
       description: "Exciting events year-round",
       bgImage: highlightImages[6]
     },
@@ -138,7 +138,7 @@ const MallHighlights = () => {
     pagination: false,
     arrows: false,
     pauseOnHover: true,
-    speed: 1000, // duration in ms
+    speed: 1300, // duration in ms
     easing: 'cubic-bezier(0.65, 0, 0.35, 1)', // smooth and elegant
     breakpoints: {
       1024: { perPage: 3 },
