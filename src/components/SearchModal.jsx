@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import { useSearch } from '@/contexts/SearchContext';
 import { Search, X, ShoppingBag, Folder, FileText, Settings, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -23,13 +23,23 @@ const SearchModal = () => {
     }
   }, [isSearchOpen]);
 
-  useEffect(() => {
-    const delayedSearch = setTimeout(() => {
-      performSearch(searchQuery);
+  const debouncedSearch = useCallback((query) => {
+    if (query.trim() === '') {
+      performSearch('');
+      return;
+    }
+    
+    const timeoutId = setTimeout(() => {
+      performSearch(query);
     }, 300);
 
-    return () => clearTimeout(delayedSearch);
-  }, [searchQuery, performSearch]);
+    return () => clearTimeout(timeoutId);
+  }, [performSearch]);
+
+  useEffect(() => {
+    const cleanup = debouncedSearch(searchQuery);
+    return cleanup;
+  }, [searchQuery, debouncedSearch]);
 
   useEffect(() => {
     const handleEscape = (e) => {
@@ -79,6 +89,10 @@ const SearchModal = () => {
       default:
         return 'bg-gray-500/20 text-gray-300';
     }
+  };
+
+  const handleResultClick = (result) => {
+    closeSearch();
   };
 
   if (!isSearchOpen) return null;
@@ -133,8 +147,8 @@ const SearchModal = () => {
                   <Link
                     key={index}
                     to={result.url}
-                    onClick={closeSearch}
-                    className="flex items-center p-4 bg-white/5 hover:bg-white/10 rounded-xl transition-all duration-200 group"
+                    onClick={() => handleResultClick(result)}
+                    className="flex items-center p-4 bg-white/5 hover:bg-white/10 rounded-xl transition-all duration-200 group cursor-pointer"
                   >
                     <div className="flex-shrink-0 mr-4">
                       {result.image ? (

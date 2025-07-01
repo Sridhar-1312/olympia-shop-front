@@ -59,7 +59,7 @@ export const SearchProvider = ({ children }) => {
   const performSearch = async (query) => {
     console.log('Performing search for:', query);
     
-    if (!query.trim()) {
+    if (!query || !query.trim()) {
       setSearchResults([]);
       setIsSearching(false);
       return;
@@ -68,17 +68,23 @@ export const SearchProvider = ({ children }) => {
     setIsSearching(true);
     
     // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 300));
-    
-    const results = searchableContent.filter(item =>
-      item.title.toLowerCase().includes(query.toLowerCase()) ||
-      item.description.toLowerCase().includes(query.toLowerCase()) ||
-      item.type.toLowerCase().includes(query.toLowerCase())
-    );
-    
-    console.log('Search results:', results);
-    setSearchResults(results);
-    setIsSearching(false);
+    try {
+      await new Promise(resolve => setTimeout(resolve, 300));
+      
+      const results = searchableContent.filter(item =>
+        item.title.toLowerCase().includes(query.toLowerCase()) ||
+        item.description.toLowerCase().includes(query.toLowerCase()) ||
+        item.type.toLowerCase().includes(query.toLowerCase())
+      );
+      
+      console.log('Search results:', results);
+      setSearchResults(results);
+    } catch (error) {
+      console.error('Search error:', error);
+      setSearchResults([]);
+    } finally {
+      setIsSearching(false);
+    }
   };
 
   const openSearch = () => {
@@ -91,6 +97,7 @@ export const SearchProvider = ({ children }) => {
     setIsSearchOpen(false);
     setSearchQuery('');
     setSearchResults([]);
+    setIsSearching(false);
   };
 
   return (
