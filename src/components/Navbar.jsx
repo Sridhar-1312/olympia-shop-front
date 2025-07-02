@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ShoppingCart, Search, Menu, X, Store } from "lucide-react";
+import { ShoppingCart, Search, Menu, X, Store, Gamepad2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSearch } from "@/contexts/SearchContext";
 
@@ -35,6 +35,7 @@ const Navbar = () => {
     { name: "Categories", href: "/categories" },
     { name: "Products", href: "/products" },
     { name: "Contact", href: "/contact" },
+    { name: "Memory Game", href: "/memory-game", icon: Gamepad2 },
   ];
 
   return (
@@ -71,8 +72,9 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className="text-white hover:text-orange-400 transition-colors duration-300 font-medium relative group"
+                className="text-white hover:text-orange-400 transition-colors duration-300 font-medium relative group flex items-center gap-2"
               >
+                {item.icon && <item.icon className="w-4 h-4" />}
                 {item.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-400 to-yellow-400 group-hover:w-full transition-all duration-300"></span>
               </Link>
@@ -129,9 +131,10 @@ const Navbar = () => {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="text-white hover:text-orange-400 transition-colors duration-300 font-medium py-2"
+                  className="text-white hover:text-orange-400 transition-colors duration-300 font-medium py-2 flex items-center gap-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
+                  {item.icon && <item.icon className="w-4 h-4" />}
                   {item.name}
                 </Link>
               ))}
